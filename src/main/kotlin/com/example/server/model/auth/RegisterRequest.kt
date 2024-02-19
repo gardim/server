@@ -1,7 +1,8 @@
 package com.example.server.model.auth
 
 data class RegisterRequest(
+    val googleId: String,
     val email: String,
     val username: String,
-    val password: String
+    val profilePictureUrl: String
 )

@@ -27,9 +27,10 @@ class UserService(
         }
 
         val user = UserEntity(
+            googleId = passwordEncoder.encode(registerRequest.googleId),
             email = registerRequest.email,
             username = registerRequest.username,
-            password = passwordEncoder.encode(registerRequest.password)
+            profilePictureUrl = registerRequest.profilePictureUrl
         )
 
         userRepository.save(user)
