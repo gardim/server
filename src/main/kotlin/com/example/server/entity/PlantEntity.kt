@@ -26,4 +26,8 @@ class PlantEntity(
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     var user: UserEntity,
+
+    @ManyToOne
+    @JoinColumn(name = "device_id", nullable = false)
+    var device: DeviceEntity,
 )
