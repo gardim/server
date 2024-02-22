@@ -4,11 +4,17 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "devices")
-class DeviceEntity {
+class DeviceEntity (
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null
+    @Column(name = "id", nullable = false)
+    var id: Long? = null,
 
     @Column(name = "frequency")
-    var frequency: Int = 0
-}
+    var frequency: Int = 0,
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    var user: UserEntity? = null,
+)

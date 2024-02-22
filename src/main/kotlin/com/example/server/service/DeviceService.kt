@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
 
+
 @Service
 class DeviceService @Autowired constructor(private val deviceRepository: DeviceRepository) {
     val allDevices: List<DeviceEntity?>
@@ -13,6 +14,10 @@ class DeviceService @Autowired constructor(private val deviceRepository: DeviceR
 
     fun getDeviceById(id: Long): Optional<DeviceEntity?> {
         return deviceRepository.findById(id)
+    }
+
+    fun getDevicesByUserId(userId: Long?): List<DeviceEntity?>? {
+        return deviceRepository.findByUserId(userId)
     }
 
     fun saveDevice(device: DeviceEntity): DeviceEntity {

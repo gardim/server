@@ -1,7 +1,10 @@
 package com.example.server.controller
 
 import com.example.server.entity.PlantEntity
+import com.example.server.model.plant.PlantImageIdentifyRequest
+import com.example.server.model.plant.PlantImageIdentifyResponse
 import com.example.server.service.PlantService
+import io.swagger.v3.oas.models.responses.ApiResponse
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -16,6 +19,21 @@ class PlantController(private val plantService: PlantService) {
     @GetMapping("/{id}")
     fun getPlantById(@PathVariable id: Long): PlantEntity? {
         return plantService.getPlantById(id)
+    }
+
+    @GetMapping("/user/{userId}")
+    fun getPlantsByUserId(@PathVariable userId: Long): List<PlantEntity> {
+        return plantService.getPlantsByUserId(userId)
+    }
+
+    @PostMapping("/query/image")
+    fun identifyPlantImage(@RequestBody plantImageRequest: PlantImageIdentifyRequest): PlantImageIdentifyResponse? {
+        return plantService.identifyPlantImage(plantImageRequest)
+    }
+
+    @PostMapping("/query/text")
+    fun identifyPlantByText(@RequestBody keywords: String): ApiResponse? {
+        return plantService.identifyPlantByText(keywords)
     }
 
     @PostMapping
